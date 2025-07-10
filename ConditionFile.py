@@ -31,7 +31,7 @@ class NumericCondition(GenericCondition):
         super(NumericCondition, self).__init__(attribute_name)
         self.threshold_value = threshold
 
-    def ask(self, answer_group: AnswerGroup[float]) -> bool:
+    def ask(self, answer_group: AnswerGroup) -> bool:
         """
         asks the given AnswerGroup has a value for this condition's attribute that is larger than this condition's
         threshold.
@@ -48,7 +48,7 @@ class CategoryCondition(GenericCondition):
         super(CategoryCondition, self).__init__(attribute_name)
         self.value = value
 
-    def ask(self, instance: AnswerGroup[str]) -> bool:
+    def ask(self, instance: AnswerGroup) -> bool:
         return instance.get_attribute_for_name(self.attribute_name) == self.value
 
     def __repr__(self):
