@@ -23,6 +23,9 @@ class AnswerGroup():
     def get_label(self) -> str:
         return self.label
 
+    def set_label(self, label:str):
+        self.label = label
+
     def __repr__(self):
         """
         This creates a string describing this AnswerGroup, in case we want to print it out.
