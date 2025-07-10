@@ -180,13 +180,13 @@ class DecisionTree:
             #   "best_no_group" and "min_gini_index"
 
         if verbose:
-            print(f"\tThe best condition was: {best_condition}, which had a low gini Index of {min_gini_index:3.3}.")
+            print(f"\tThe best condition was: {best_condition}, which had a low gini Index of {min_gini_index:3.3f}.")
             print(f"\tThis split the dataset into {len(best_yes_group)} 'yes' values with a gini coefficient of ",
                   end="")
             print(
-                f"{self.gini_coefficient_for_list(best_yes_group):3.3} and {len(best_no_group)} 'no' values with a gini ",
+                f"{self.gini_coefficient_for_list(best_yes_group):3.3f} and {len(best_no_group)} 'no' values with a gini ",
                 end="")
-            print(f"coefficient of {self.gini_coefficient_for_list(best_no_group):3.3}.")
+            print(f"coefficient of {self.gini_coefficient_for_list(best_no_group):3.3f}.")
 
         # make the node we're about to return, based on the favorite condition we just found.
         result = BranchNode(best_condition, depth=depth)
