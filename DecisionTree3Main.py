@@ -14,25 +14,15 @@ def load_map_image():
     global source_map
     source_map = cv2.imread("land&water desaturated.png")
 
-def generate_N_training_data(N:int) -> List[AnswerGroup]:
+def generate_N_data(N:int, label_data:bool = True) -> Tuple[List[AnswerGroup], List[str]]:
+    """
+    polls the map to create N AnswerGroups, and a matching list of the correct classifications.
+    :param N: the number of AnswerGroups to generate
+    :param label_data: if True, the AnswerGroups should have a label that matches the correct classification. Otherwise,
+    the AnswerGroup should have a label = None.
+    :return: A list of AnswerGroups, perhaps labeled, and a matching list of strings indicating land or water.
+    """
     result: List[AnswerGroup] = []
-    width = source_map.shape[1]  # this looks backwards because openCV graphics are row,col
-    height = source_map.shape[0]
-    AG_categories = ["x","y"]
-
-    for i in range(N):
-        x = random.randint(0,width-1)
-        y = random.randint(0,height-1)
-
-        if source_map[y,x,0] > 128:
-            result.append(AnswerGroup(question_name_list=AG_categories, answer_list=[x, y],label="water"))
-        else:
-            result.append(AnswerGroup(question_name_list=AG_categories, answer_list=[x, y], label="land"))
-
-    return result
-
-def generate_N_testing_data(N:int) -> Tuple[List[AnswerGroup], List[str]]:
-    points: List[AnswerGroup] = []
     correct_answers: List[str] = []
     width = source_map.shape[1]  # this looks backwards because openCV graphics are row,col
     height = source_map.shape[0]
@@ -43,12 +33,17 @@ def generate_N_testing_data(N:int) -> Tuple[List[AnswerGroup], List[str]]:
         y = random.randint(0,height-1)
 
         if source_map[y,x,0] > 128:
-            points.append(AnswerGroup(question_name_list=AG_categories, answer_list=[x, y]))
+            result.append(AnswerGroup(question_name_list=AG_categories, answer_list=[x, y]))
             correct_answers.append("water")
         else:
-            points.append(AnswerGroup(question_name_list=AG_categories, answer_list=[x, y]))
+            result.append(AnswerGroup(question_name_list=AG_categories, answer_list=[x, y]))
             correct_answers.append("land")
-    return points, correct_answers
+
+        if label_data:
+            result[-1].set_label(correct_answers[-1])
+
+    return result, correct_answers
+
 
 def display_labeled_data(data: List[AnswerGroup]) -> np.ndarray:
     """
@@ -80,7 +75,7 @@ def display_labeled_data(data: List[AnswerGroup]) -> np.ndarray:
 if __name__ == "__main__":
     # generate labeled training data and show the map with this data.
     load_map_image()
-    training_data = generate_N_training_data(2000)
+    training_data, training_answers = generate_N_data(N=2000, label_date = True)
     training_map:np.ndarray = display_labeled_data(training_data)
 
     # build the tree.
@@ -88,7 +83,7 @@ if __name__ == "__main__":
     tree.build_tree(training_data, [0,0,source_map.shape[1], source_map.shape[0]])
 
     # check how well the tree predicts the data.
-    testing_data, testing_correct_answers = generate_N_testing_data(5000)
+    testing_data, testing_correct_answers = generate_N_data(N=7500, label_data = False)
     num_correct = 0
     for i in range(len(testing_data)):
         prediction_string = tree.predict(testing_data[i])
