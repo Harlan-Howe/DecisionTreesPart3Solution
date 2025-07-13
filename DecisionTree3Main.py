@@ -81,6 +81,7 @@ if __name__ == "__main__":
     # build the tree.
     tree = DecisionTree()
     tree.build_tree(training_data, [0,0,source_map.shape[1], source_map.shape[0]])
+    print(f"Tree generated with max depth of {tree.max_depth_used}.")
 
     # check how well the tree predicts the data.
     testing_data, testing_correct_answers = generate_N_data(N=7500, label_data = False)
