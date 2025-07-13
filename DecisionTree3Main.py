@@ -85,5 +85,5 @@ if __name__ == "__main__":
             num_correct += 1
         testing_data[i].set_label(prediction_string)
 
-    print(f"Tree predicted {num_correct} out of {len(testing_data)} points, for {100*num_correct/testing_data:3.2f}%")
+    print(f"Tree predicted {num_correct} out of {len(testing_data)} points, for {100*num_correct/len(testing_data):3.2f}%")
     display_labeled_data(testing_data)

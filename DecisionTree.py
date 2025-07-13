@@ -37,7 +37,7 @@ class DecisionTree:
 
         conditions_out: List[NumericCondition] = []
         x = range[0]+x_division_size
-        while x < range[1]:
+        while x < range[2]:
             conditions_out.append(NumericCondition("x", x))
             x+= x_division_size
 
