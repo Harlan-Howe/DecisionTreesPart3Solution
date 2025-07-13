@@ -78,19 +78,22 @@ def display_labeled_data(data: List[AnswerGroup]) -> np.ndarray:
 
 
 if __name__ == "__main__":
+    # generate labeled training data and show the map with this data.
     load_map_image()
     training_data = generate_N_training_data(2000)
-    # display_labeled_data(training_data)
-    testing_data, testing_correct_answers = generate_N_testing_data(5000)
+    training_map:np.ndarray = display_labeled_data(training_data)
+
+    # build the tree.
     tree = DecisionTree()
     tree.build_tree(training_data, [0,0,source_map.shape[1], source_map.shape[0]])
 
+    # check how well the tree predicts the data.
+    testing_data, testing_correct_answers = generate_N_testing_data(5000)
     num_correct = 0
     for i in range(len(testing_data)):
         prediction_string = tree.predict(testing_data[i])
         if prediction_string == testing_correct_answers[i]:
             num_correct += 1
         testing_data[i].set_label(prediction_string)
-
     print(f"Tree predicted {num_correct} out of {len(testing_data)} points, for {100*num_correct/len(testing_data):3.2f}%")
     display_labeled_data(testing_data)
