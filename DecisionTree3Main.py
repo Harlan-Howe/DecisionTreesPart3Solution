@@ -3,6 +3,7 @@ import random
 from typing import List, Tuple
 
 import cv2
+import numpy as np
 
 from AnswerGroupFile import AnswerGroup
 from DecisionTree import DecisionTree
@@ -49,7 +50,13 @@ def generate_N_testing_data(N:int) -> Tuple[List[AnswerGroup], List[str]]:
             correct_answers.append("land")
     return points, correct_answers
 
-def display_labeled_data(data: List[AnswerGroup]):
+def display_labeled_data(data: List[AnswerGroup]) -> np.ndarray:
+    """
+    draws a copy of the map with the given data appearing as dots on the map.
+    (Note: This graphic is HUGE, so it will appear shrunk on the screen, which is why we are using large radius dots.)
+    :param data: a list of AnswerGroups that are labeled "water" or "land".
+    :return: a copy of the map, in case we want to draw more stuff on it.
+    """
     canvas = copy.deepcopy(source_map)
     for ag in data:
         if ag.get_label()=="water":
@@ -67,7 +74,7 @@ def display_labeled_data(data: List[AnswerGroup]):
     cv2.imshow("Map",canvas)
     cv2.waitKey(0)
     cv2.destroyWindow("Map")
-
+    return canvas
 
 
 if __name__ == "__main__":
