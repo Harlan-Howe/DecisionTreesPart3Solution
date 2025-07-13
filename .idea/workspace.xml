@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7e62c4d-51bf-4db6-9df0-b83016fe79a0" name="Changes" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/DecisionTree.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/land&amp;water desaturated.png" afterDir="false" />
+    <list default="true" id="f7e62c4d-51bf-4db6-9df0-b83016fe79a0" name="Changes" comment="condensed generate_N_training_data() and generate_N_testing_data() into one method. Improved documentation. Both usages now return answer labels list.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AnswerGroupFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/AnswerGroupFile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DecisionTree3Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/DecisionTree3Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DecisionTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/DecisionTree.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,11 +98,47 @@
       <option name="project" value="LOCAL" />
       <updated>1752158276077</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixed errors found while writing solution code!">
+      <option name="closed" value="true" />
+      <created>1752445474226</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1752445474226</updated>
+    </task>
+    <task id="LOCAL-00003" summary="display_labeled_data() now returns a copy of the map displayed, so it can be used for further annotation.">
+      <option name="closed" value="true" />
+      <created>1752445682930</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1752445682930</updated>
+    </task>
+    <task id="LOCAL-00004" summary="cleaned up the main instructions.">
+      <option name="closed" value="true" />
+      <created>1752445865600</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1752445865600</updated>
+    </task>
+    <task id="LOCAL-00005" summary="condensed generate_N_training_data() and generate_N_testing_data() into one method. Improved documentation. Both usages now return answer labels list.">
+      <option name="closed" value="true" />
+      <created>1752446397273</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1752446397273</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="Fixed errors found while writing solution code!" />
+    <MESSAGE value="display_labeled_data() now returns a copy of the map displayed, so it can be used for further annotation." />
+    <MESSAGE value="cleaned up the main instructions." />
+    <MESSAGE value="condensed generate_N_training_data() and generate_N_testing_data() into one method. Improved documentation. Both usages now return answer labels list." />
+    <option name="LAST_COMMIT_MESSAGE" value="condensed generate_N_training_data() and generate_N_testing_data() into one method. Improved documentation. Both usages now return answer labels list." />
   </component>
 </project>

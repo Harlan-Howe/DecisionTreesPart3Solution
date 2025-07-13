@@ -14,6 +14,7 @@ class DecisionTree:
 
     def __init__(self):
         self.decision_tree_root: Optional[GenericNode] = None
+        self.max_depth_used = 0
 
     def build_tree(self, training_data: List[AnswerGroup], bounds: List[int]|Tuple[int, int, int, int]):
         print(f"I am about to build a tree with {len(training_data)} data points.")
@@ -153,6 +154,8 @@ class DecisionTree:
             most_frequent_label = self.get_most_frequent_label_in_list(answergroup_list)
             if verbose:
                 print(f"I'll make a LeafNode: [[{most_frequent_label}]]")
+            if depth > self.max_depth_used:
+                self.max_depth_used = depth
             return LeafNode(most_frequent_label, depth=depth)
 
         min_gini_index = 1000  # a ridiculously high number to start; we're likely to find values less than one.
