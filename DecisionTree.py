@@ -1,6 +1,8 @@
 import time
 from typing import Optional, List, Tuple, Dict
 
+import numpy as np
+
 from AnswerGroupFile import AnswerGroup
 from ConditionFile import NumericCondition
 from NodeFile import GenericNode, BranchNode, LeafNode
@@ -15,6 +17,7 @@ class DecisionTree:
     def __init__(self):
         self.decision_tree_root: Optional[GenericNode] = None
         self.max_depth_used = 0
+        self.debug_canvas: Optional[np.ndarray] = None
 
     def build_tree(self, training_data: List[AnswerGroup], bounds: List[int]|Tuple[int, int, int, int]):
         print(f"I am about to build a tree with {len(training_data)} data points.")
