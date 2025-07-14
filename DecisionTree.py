@@ -1,6 +1,7 @@
 import time
 from typing import Optional, List, Tuple, Dict
 
+import cv2
 import numpy as np
 
 from AnswerGroupFile import AnswerGroup
@@ -161,6 +162,13 @@ class DecisionTree:
             most_frequent_label = self.get_most_frequent_label_in_list(answergroup_list)
             if verbose:
                 print(f"I'll make a LeafNode: [[{most_frequent_label}]]")
+            if self.debug_canvas is not None:
+                if most_frequent_label == "water":
+                    color = (255,0,0)
+                else:
+                    color = (0,255,0)
+                cv2.rectangle(img=self.debug_canvas, pt1=(range[0], range[1]), pt2=(range[2], range[3]), color=color,
+                              thickness =10)
             if depth > self.max_depth_used:
                 self.max_depth_used = depth
             return LeafNode(most_frequent_label, depth=depth)
