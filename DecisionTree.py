@@ -19,7 +19,11 @@ class DecisionTree:
         self.max_depth_used = 0
         self.debug_canvas: Optional[np.ndarray] = None
 
-    def build_tree(self, training_data: List[AnswerGroup], bounds: List[int]|Tuple[int, int, int, int]):
+    def build_tree(self,
+                   training_data: List[AnswerGroup],
+                   bounds: List[int]|Tuple[int, int, int, int],
+                   debug_canvas: np.ndarray = None):
+        self.debug_canvas = debug_canvas
         print(f"I am about to build a tree with {len(training_data)} data points.")
         start_time = time.perf_counter()
         self.decision_tree_root = self.make_node_for_instances_at_depth(answergroup_list=training_data,
