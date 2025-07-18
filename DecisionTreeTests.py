@@ -179,5 +179,35 @@ class MyTestCase(unittest.TestCase):
                          {"land": 0, "water": 0})
         print("Test_d completed.")
 
+    def test_e_all_labels_match(self):
+        print("Starting test_e.")
+        names = ["x", "y"]
+        answerGroupList = [AnswerGroup(question_name_list=names, answer_list=[235, 347], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[264, 316], label="water"),
+                           AnswerGroup(question_name_list=names, answer_list=[222, 322], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[285, 374], label="water"),
+                           AnswerGroup(question_name_list=names, answer_list=[271, 395], label="water"),
+                           AnswerGroup(question_name_list=names, answer_list=[236, 381], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[201, 355], label="water"),
+                           AnswerGroup(question_name_list=names, answer_list=[219, 348], label="water")]
+
+        answerGroupList2 = [AnswerGroup(question_name_list=names, answer_list=[235, 347], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[264, 316], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[222, 322], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[285, 374], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[271, 395], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[236, 381], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[201, 355], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[219, 348], label="land")]
+
+        answerGroupList3 = [AnswerGroup(question_name_list=names, answer_list=[235, 347], label="water"),
+                           AnswerGroup(question_name_list=names, answer_list=[264, 316], label="water"),
+                           AnswerGroup(question_name_list=names, answer_list=[222, 322], label="water")]
+
+        self.assertFalse(self.decision_tree.all_labels_in_group_match(answerGroupList))
+        self.assertTrue(self.decision_tree.all_labels_in_group_match(answerGroupList2))
+        self.assertTrue(self.decision_tree.all_labels_in_group_match(answerGroupList3))
+        print("Test_e completed.")
+
 if __name__ == '__main__':
     unittest.main()
