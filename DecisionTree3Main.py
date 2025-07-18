@@ -91,7 +91,19 @@ if __name__ == "__main__":
         cv2.waitKey()
         cv2.destroyWindow("trained")
 
+    # check how well the tree predicts the training data. We'd expect this to be very good!
+    print("How does the tree predict the data it was trained on?")
+    num_correct = 0
+    for i in range(len(training_data)):
+        prediction_string = tree.predict(training_data[i])
+        if prediction_string == training_answers[i]:
+            num_correct += 1
+        training_data[i].set_label(prediction_string)
+    print(
+        f"\tTree predicted {num_correct} out of {len(training_data)} points, for {100 * num_correct / len(training_data):3.2f}%")
+
     # check how well the tree predicts the data.
+    print("Now let's test how the tree does predicting on new data.")
     testing_data, testing_correct_answers = generate_N_data(N=N_TESTING, label_data = False)
     num_correct = 0
     for i in range(len(testing_data)):
@@ -99,5 +111,5 @@ if __name__ == "__main__":
         if prediction_string == testing_correct_answers[i]:
             num_correct += 1
         testing_data[i].set_label(prediction_string)
-    print(f"Tree predicted {num_correct} out of {len(testing_data)} points, for {100*num_correct/len(testing_data):3.2f}%")
+    print(f"\tTree predicted {num_correct} out of {len(testing_data)} points, for {100*num_correct/len(testing_data):3.2f}%")
     display_labeled_data(testing_data)
