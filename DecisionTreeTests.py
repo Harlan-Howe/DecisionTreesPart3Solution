@@ -173,10 +173,13 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(self.decision_tree.counts_per_label(answerGroupList),
                          {"land":3, "water":5})
+        print("  assertion 0 passed.")
         self.assertEqual(self.decision_tree.counts_per_label(answerGroupList2),
                          {"land": 8, "water": 0})
+        print("  assertion 1 passed.")
         self.assertEqual(self.decision_tree.counts_per_label(answerGroupList3),
                          {"land": 0, "water": 0})
+        print("  assertion 2 passed.")
         print("Test_d completed.")
 
     def test_e_all_labels_match(self):
@@ -205,8 +208,11 @@ class MyTestCase(unittest.TestCase):
                            AnswerGroup(question_name_list=names, answer_list=[222, 322], label="water")]
 
         self.assertFalse(self.decision_tree.all_labels_in_group_match(answerGroupList))
+        print("  assertion 0 passed.")
         self.assertTrue(self.decision_tree.all_labels_in_group_match(answerGroupList2))
+        print("  assertion 1 passed.")
         self.assertTrue(self.decision_tree.all_labels_in_group_match(answerGroupList3))
+        print("  assertion 2 passed.")
         print("Test_e completed.")
 
     def test_f_most_frequent_label(self):
@@ -237,9 +243,13 @@ class MyTestCase(unittest.TestCase):
         answerGroupList4 = []
 
         self.assertEqual(self.decision_tree.get_most_frequent_label_in_list(groups=answerGroupList), "water")
+        print("  assertion 0 passed.")
         self.assertEqual(self.decision_tree.get_most_frequent_label_in_list(groups=answerGroupList2), "land")
+        print("  assertion 1 passed.")
         self.assertEqual(self.decision_tree.get_most_frequent_label_in_list(groups=answerGroupList3), "land")
+        print("  assertion 2 passed.")
         self.assertEqual(self.decision_tree.get_most_frequent_label_in_list(groups=answerGroupList4), "land")
+        print("  assertion 3 passed.")
         print("Test_f completed.")
 
     def test_g_most_frequent_label(self):
@@ -272,15 +282,19 @@ class MyTestCase(unittest.TestCase):
         self.assertAlmostEqual(self.decision_tree.gini_coefficient_for_list(answergroup_list=answerGroupList),
                                0.4688,
                                4)
+        print("  assertion 0 passed.")
         self.assertAlmostEqual(self.decision_tree.gini_coefficient_for_list(answergroup_list=answerGroupList2),
                                0.0000,
                                4)
+        print("  assertion 1 passed.")
         self.assertAlmostEqual(self.decision_tree.gini_coefficient_for_list(answergroup_list=answerGroupList3),
                                0.5,
                                4)
+        print("  assertion 2 passed.")
         self.assertAlmostEqual(self.decision_tree.gini_coefficient_for_list(answergroup_list=answerGroupList4),
                                0,
                                4)
+        print("  assertion 3 passed.")
         print("Test_g completed.")
 
 if __name__ == '__main__':
