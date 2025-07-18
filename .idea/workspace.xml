@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7e62c4d-51bf-4db6-9df0-b83016fe79a0" name="Changes" comment="condensed generate_N_training_data() and generate_N_testing_data() into one method. Improved documentation. Both usages now return answer labels list.">
-      <change beforePath="$PROJECT_DIR$/DecisionTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/DecisionTree.py" afterDir="false" />
+    <list default="true" id="f7e62c4d-51bf-4db6-9df0-b83016fe79a0" name="Changes" comment="corrected calculation in comment for gini; wrote gini method.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DecisionTreeTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/DecisionTreeTests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +17,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Python Unit Test" />
       </list>
     </option>
   </component>
@@ -30,22 +32,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.DecisionTree3Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/harlanhowe/PycharmProjects/DecisionTreesPart3&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Python tests in DecisionTreeTests.py.executor": "Run",
+    "Python.DecisionTree3Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/harlanhowe/PycharmProjects/DecisionTreesPart3"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.Python tests in DecisionTreeTests.py">
     <configuration name="DecisionTree3Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="DecisionTreesPart3" />
       <option name="ENV_FILES" value="" />
@@ -68,8 +71,24 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests in DecisionTreeTests.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="DecisionTreesPart3" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/DecisionTreeTests.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests in DecisionTreeTests.py" />
         <item itemvalue="Python.DecisionTree3Main" />
         <item itemvalue="Python.DecisionTree3Main" />
       </list>
@@ -130,7 +149,87 @@
       <option name="project" value="LOCAL" />
       <updated>1752446397273</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added self.debug_canvas variable; required importing numpy.">
+      <option name="closed" value="true" />
+      <created>1752532886737</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1752532886737</updated>
+    </task>
+    <task id="LOCAL-00007" summary="build_tree now accepts a debug canvas, which it saves into the instance variable.">
+      <option name="closed" value="true" />
+      <created>1752532985108</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1752532985108</updated>
+    </task>
+    <task id="LOCAL-00008" summary="make_node_for_instances_at_depth now draws a box when creating a leaf.">
+      <option name="closed" value="true" />
+      <created>1752533195221</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1752533195221</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Wrote tests for building conditions for range.">
+      <option name="closed" value="true" />
+      <created>1752850988737</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1752850988737</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Reversed order of yes/no in return for split_answer_groups_by_condition; wrote method.">
+      <option name="closed" value="true" />
+      <created>1752851910978</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1752851910978</updated>
+    </task>
+    <task id="LOCAL-00011" summary="wrote test c for split answer groups by condition.">
+      <option name="closed" value="true" />
+      <created>1752852186638</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1752852186638</updated>
+    </task>
+    <task id="LOCAL-00012" summary="wrote test d for counts per label.">
+      <option name="closed" value="true" />
+      <created>1752852525604</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1752852525604</updated>
+    </task>
+    <task id="LOCAL-00013" summary="wrote test e for all labels in group match.">
+      <option name="closed" value="true" />
+      <created>1752852733675</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1752852733675</updated>
+    </task>
+    <task id="LOCAL-00014" summary="wrote test_f for get_most_frequent_label_in_list.">
+      <option name="closed" value="true" />
+      <created>1752853025522</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1752853025522</updated>
+    </task>
+    <task id="LOCAL-00015" summary="corrected calculation in comment for gini; wrote gini method.">
+      <option name="closed" value="true" />
+      <created>1752853587945</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1752853587945</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -139,6 +238,16 @@
     <MESSAGE value="display_labeled_data() now returns a copy of the map displayed, so it can be used for further annotation." />
     <MESSAGE value="cleaned up the main instructions." />
     <MESSAGE value="condensed generate_N_training_data() and generate_N_testing_data() into one method. Improved documentation. Both usages now return answer labels list." />
-    <option name="LAST_COMMIT_MESSAGE" value="condensed generate_N_training_data() and generate_N_testing_data() into one method. Improved documentation. Both usages now return answer labels list." />
+    <MESSAGE value="Added self.debug_canvas variable; required importing numpy." />
+    <MESSAGE value="build_tree now accepts a debug canvas, which it saves into the instance variable." />
+    <MESSAGE value="make_node_for_instances_at_depth now draws a box when creating a leaf." />
+    <MESSAGE value="Wrote tests for building conditions for range." />
+    <MESSAGE value="Reversed order of yes/no in return for split_answer_groups_by_condition; wrote method." />
+    <MESSAGE value="wrote test c for split answer groups by condition." />
+    <MESSAGE value="wrote test d for counts per label." />
+    <MESSAGE value="wrote test e for all labels in group match." />
+    <MESSAGE value="wrote test_f for get_most_frequent_label_in_list." />
+    <MESSAGE value="corrected calculation in comment for gini; wrote gini method." />
+    <option name="LAST_COMMIT_MESSAGE" value="corrected calculation in comment for gini; wrote gini method." />
   </component>
 </project>
