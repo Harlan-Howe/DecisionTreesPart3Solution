@@ -1,6 +1,7 @@
 import unittest
 from typing import List
 
+from AnswerGroupFile import AnswerGroup
 from ConditionFile import NumericCondition
 from DecisionTree import DecisionTree, MAX_DIVISIONS_PER_RANGE
 
@@ -34,8 +35,8 @@ class MyTestCase(unittest.TestCase):
         self.assertLess(x_conditions[-1].threshold_value, 400, "last condition in x should be less than right margin.")
         print ("  passed equal spacing in x.")
 
-        self.assertEqual(MAX_DIVISIONS_PER_RANGE,
-                         len(x_conditions),
+        self.assertEqual(len(x_conditions),
+                         MAX_DIVISIONS_PER_RANGE,
                          f"There should be {MAX_DIVISIONS_PER_RANGE} conditions for x.")
         print("  passed x count.")
 
@@ -49,8 +50,8 @@ class MyTestCase(unittest.TestCase):
                                  "Conditions should be evenly spaced in y.")
         self.assertLess(y_conditions[-1].threshold_value, 600, "last condition in y should be less than right margin.")
         print ("  passed equal spacing in y.")
-        self.assertEqual(MAX_DIVISIONS_PER_RANGE,
-                         len(y_conditions),
+        self.assertEqual(len(y_conditions),
+                         MAX_DIVISIONS_PER_RANGE,
                          f"There should be {MAX_DIVISIONS_PER_RANGE} conditions for y.")
         print("  passed y count.")
         print("Test_a completed.")
@@ -83,8 +84,8 @@ class MyTestCase(unittest.TestCase):
                         "last condition in x should be less than right margin.")
         print("  passed equal spacing in x.")
 
-        self.assertEqual(4,
-                         len(x_conditions),
+        self.assertEqual(len(x_conditions),
+                          4,
                          f"There should be 4 conditions for x.")
         print("  passed x count.")
 
@@ -100,11 +101,53 @@ class MyTestCase(unittest.TestCase):
         self.assertLess(y_conditions[-1].threshold_value, 500,
                         "last condition in y should be less than right margin.")
         print("  passed equal spacing in y.")
-        self.assertEqual(MAX_DIVISIONS_PER_RANGE,
-                         len(y_conditions),
-                         f"There should be {MAX_DIVISIONS_PER_RANGE} conditions for y.")
+        self.assertEqual( len(y_conditions),
+                          MAX_DIVISIONS_PER_RANGE,
+                          "There should be {MAX_DIVISIONS_PER_RANGE} conditions for y.")
         print("  passed y count.")
         print("Test_b completed.")
+
+    def test_c_split_answerGroups(self):
+        print("Starting test_c.")
+        names = ["x","y"]
+        answerGroupList = [AnswerGroup(question_name_list=names, answer_list=[235,347]),
+                           AnswerGroup(question_name_list=names, answer_list=[264,316]),
+                           AnswerGroup(question_name_list=names, answer_list=[222,322]),
+                           AnswerGroup(question_name_list=names, answer_list=[285,374]),
+                           AnswerGroup(question_name_list=names, answer_list=[271,395]),
+                           AnswerGroup(question_name_list=names, answer_list=[236,381]),
+                           AnswerGroup(question_name_list=names, answer_list=[201,355]),
+                           AnswerGroup(question_name_list=names, answer_list=[219,348])]
+        condition0 = NumericCondition("x",245)
+        condition1 = NumericCondition("y",350)
+        condition2 = NumericCondition("x",200)
+        condition3 = NumericCondition("y",375)
+
+        no_list, yes_list = self.decision_tree.split_answer_groups_by_condition(groups=answerGroupList,
+                                                                                condition = condition0)
+        self.assertEqual(len(no_list), 5, "For condition 0, there should be 5 no's.")
+        self.assertEqual(len(yes_list), 3, "For condition 0, there should be 3 yes's.")
+        print("  condition0 passed.")
+
+        no_list, yes_list = self.decision_tree.split_answer_groups_by_condition(groups=answerGroupList,
+                                                                                condition = condition1)
+        self.assertEqual(len(no_list), 4, "For condition 0, there should be 5 no's.")
+        self.assertEqual(len(yes_list), 4, "For condition 0, there should be 3 yes's.")
+        print("  condition1 passed.")
+
+        no_list, yes_list = self.decision_tree.split_answer_groups_by_condition(groups=answerGroupList,
+                                                                                condition = condition2)
+        self.assertEqual(len(no_list), 0, "For condition 0, there should be 5 no's.")
+        self.assertEqual(len(yes_list), 8, "For condition 0, there should be 3 yes's.")
+        print("  condition2 passed.")
+
+        no_list, yes_list = self.decision_tree.split_answer_groups_by_condition(groups=answerGroupList,
+                                                                                condition = condition3)
+        self.assertEqual(len(no_list), 6, "For condition 0, there should be 5 no's.")
+        self.assertEqual(len(yes_list), 2, "For condition 0, there should be 3 yes's.")
+        print("  condition3 passed.")
+        print("Test_c completed.")
+
 
 
 if __name__ == '__main__':
