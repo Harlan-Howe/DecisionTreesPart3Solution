@@ -177,12 +177,8 @@ class DecisionTree:
             if verbose:
                 print(f"I'll make a LeafNode: [[{most_frequent_label}]]")
             if self.debug_canvas is not None:
-                if most_frequent_label == "water":
-                    color = (255,0,0)
-                else:
-                    color = (0,255,0)
-                cv2.rectangle(img=self.debug_canvas, pt1=(range[0], range[1]), pt2=(range[2], range[3]), color=color,
-                              thickness =10)
+                cv2.rectangle(img=self.debug_canvas, pt1=(range[0], range[1]), pt2=(range[2], range[3]), color=(0,196,196),
+                              thickness =5)
             if depth > self.max_depth_used:
                 self.max_depth_used = depth
             return LeafNode(most_frequent_label, depth=depth)
