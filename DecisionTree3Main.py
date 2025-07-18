@@ -74,17 +74,25 @@ def display_labeled_data(data: List[AnswerGroup]) -> np.ndarray:
 
 if __name__ == "__main__":
     # generate labeled training data and show the map with this data.
+    SHOW_DEBUG_IMAGE = True
+    N_TRAINING = 3000
+    N_TESTING = 7500
     load_map_image()
-    training_data, training_answers = generate_N_data(N=2000, label_date = True)
+    training_data, training_answers = generate_N_data(N=N_TRAINING, label_data = True)
     training_map:np.ndarray = display_labeled_data(training_data)
 
     # build the tree.
     tree = DecisionTree()
-    tree.build_tree(training_data, [0,0,source_map.shape[1], source_map.shape[0]])
+    tree.build_tree(training_data, [0,0,source_map.shape[1], source_map.shape[0]],debug_canvas=training_map)
     print(f"Tree generated with max depth of {tree.max_depth_used}.")
 
+    if SHOW_DEBUG_IMAGE:
+        cv2.imshow("trained",training_map)
+        cv2.waitKey()
+        cv2.destroyWindow("trained")
+
     # check how well the tree predicts the data.
-    testing_data, testing_correct_answers = generate_N_data(N=7500, label_data = False)
+    testing_data, testing_correct_answers = generate_N_data(N=N_TESTING, label_data = False)
     num_correct = 0
     for i in range(len(testing_data)):
         prediction_string = tree.predict(testing_data[i])
