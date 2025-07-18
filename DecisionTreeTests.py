@@ -148,7 +148,36 @@ class MyTestCase(unittest.TestCase):
         print("  condition3 passed.")
         print("Test_c completed.")
 
+    def test_d_counts_per_label(self):
+        print("Starting test_d.")
+        names = ["x", "y"]
+        answerGroupList = [AnswerGroup(question_name_list=names, answer_list=[235, 347], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[264, 316], label="water"),
+                           AnswerGroup(question_name_list=names, answer_list=[222, 322], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[285, 374], label="water"),
+                           AnswerGroup(question_name_list=names, answer_list=[271, 395], label="water"),
+                           AnswerGroup(question_name_list=names, answer_list=[236, 381], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[201, 355], label="water"),
+                           AnswerGroup(question_name_list=names, answer_list=[219, 348], label="water")]
 
+        answerGroupList2 = [AnswerGroup(question_name_list=names, answer_list=[235, 347], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[264, 316], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[222, 322], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[285, 374], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[271, 395], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[236, 381], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[201, 355], label="land"),
+                           AnswerGroup(question_name_list=names, answer_list=[219, 348], label="land")]
+
+        answerGroupList3 = []
+
+        self.assertEqual(self.decision_tree.counts_per_label(answerGroupList),
+                         {"land":3, "water":5})
+        self.assertEqual(self.decision_tree.counts_per_label(answerGroupList2),
+                         {"land": 8, "water": 0})
+        self.assertEqual(self.decision_tree.counts_per_label(answerGroupList3),
+                         {"land": 0, "water": 0})
+        print("Test_d completed.")
 
 if __name__ == '__main__':
     unittest.main()
