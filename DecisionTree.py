@@ -9,8 +9,8 @@ from ConditionFile import NumericCondition
 from NodeFile import GenericNode, BranchNode, LeafNode
 
 MAX_DIVISIONS_PER_RANGE = 9
-MAX_DEPTH = 4
-MIN_ITEMS_PER_BRANCH_NODE = 5
+MAX_DEPTH = 25
+MIN_ITEMS_PER_BRANCH_NODE = 3
 VERBOSE = True
 
 class DecisionTree:
@@ -166,8 +166,13 @@ class DecisionTree:
         if verbose:
             print(f"I've been asked to make a node at depth {depth}, using {N} AnswerGroups.")
 
+        condition_list = self.build_conditions_for_range(range)
+
         # checks whether this is one of the three conditions to make a leaf node.
-        if depth == MAX_DEPTH or N < MIN_ITEMS_PER_BRANCH_NODE or self.all_labels_in_group_match(answergroup_list):
+        if (depth == MAX_DEPTH or
+                N < MIN_ITEMS_PER_BRANCH_NODE or
+                len(condition_list)==0 or
+                self.all_labels_in_group_match(answergroup_list)):
             most_frequent_label = self.get_most_frequent_label_in_list(answergroup_list)
             if verbose:
                 print(f"I'll make a LeafNode: [[{most_frequent_label}]]")
@@ -187,12 +192,12 @@ class DecisionTree:
         best_yes_group = None
         best_no_group = None
 
-        condition_list = self.build_conditions_for_range(range)
+
 
         # loop through all the conditions in our list of possible conditions.
         for condition in condition_list:
             # use this condition to split our list of AnswerGroups in two
-            (yes_choices, no_choices) = self.split_answer_groups_by_condition(answergroup_list, condition)
+            (no_choices, yes_choices) = self.split_answer_groups_by_condition(answergroup_list, condition)
 
             # get some statistics about the two sublists we just made:
             yes_count = len(yes_choices)
@@ -205,6 +210,13 @@ class DecisionTree:
             # TODO #5: based on "p_yes," "p_no," "gini_yes," and "gini_no," calculate the gini index for this choice.
             #   if this gini_index is better than the others we've seen so far, update "best_condition," "best_yes_group,"
             #   "best_no_group" and "min_gini_index"
+            Gini_index = p_yes * gini_yes + p_no * gini_no
+            if min_gini_index > Gini_index:
+                min_gini_index = Gini_index
+                best_condition = condition
+                best_no_group = no_choices
+                best_yes_group = yes_choices
+
 
         if verbose:
             print(f"\tThe best condition was: {best_condition}, which had a low gini Index of {min_gini_index:3.3f}.")
