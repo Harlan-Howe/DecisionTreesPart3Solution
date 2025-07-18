@@ -121,10 +121,10 @@ class DecisionTree:
     def gini_coefficient_for_list(self, answergroup_list: List[AnswerGroup]) -> float:
         """
         Find the gini coefficient for the given list of AnswerGroups, based on their labels.
-        1 - Pa**2 + Pb**2 + Pc**2 +...   where Pa = Num "a" labels/total number of labels.
+        1 - (Pa**2 + Pb**2 + Pc**2 +...)   where Pa = Num "a" labels/total number of labels.
         (Note: "**2" means "Squared" in python.)
         :param answergroup_list: the list to consider
-        :return: the gini coefficient of that list.
+        :return: the gini coefficient of that list, or zero, if list is empty.
         """
         N = len(answergroup_list)  # total number of labels
 
@@ -140,6 +140,9 @@ class DecisionTree:
         # Note, since we only have two labels in this program, this may reduce to something simple and may not need a
         # loop.
         gini = 1
+
+        for p in label_counts.values():
+            gini -= (p/N)**2
 
         return gini
 
