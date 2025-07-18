@@ -15,6 +15,8 @@ VERBOSE = True
 
 class DecisionTree:
 
+
+
     def __init__(self):
         self.decision_tree_root: Optional[GenericNode] = None
         self.max_depth_used = 0
@@ -63,16 +65,20 @@ class DecisionTree:
         on whether they meet the given Condition. The original group is unchanged.
         :param groups: a list of answergroups
         :param condition: a condition to apply to each of the answergroups
-        :return: a list of the ag's that meet the condition, and a list of the ag's that don't meet the condition.
+        :return: a list of the ag's that don't meet the condition, and a list of the ag's that do meet the condition.
 
         note: these conditions are spatial (x/y), NOT labels (land vs. water).
         """
         yes_list: List[AnswerGroup] = []
         no_list: List[AnswerGroup] = []
 
-        # TODO: You write this.
+        for ag in groups:
+            if condition.ask(ag):
+                yes_list.append(ag)
+            else:
+                no_list.append(ag)
 
-        return yes_list, no_list
+        return no_list, yes_list
 
     def counts_per_label(self, groups: List[AnswerGroup]) -> Dict[str,int]:
         """
